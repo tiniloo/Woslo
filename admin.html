@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<h1>📦 Admin Dashboard</h1>
+
+<h2>Upload Excel File</h2>
+<input type="file" id="fileInput">
+
+<button onclick="upload()">Upload Products</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="firebase.js"></script>
+
+<script>
+
+function upload() {
+  let file = document.getElementById("fileInput").files[0];
+
+  let reader = new FileReader();
+
+  reader.onload = function(e) {
+    let data = new Uint8Array(e.target.result);
+    let workbook = XLSX.read(data, {type: "array"});
+
+    let sheet = workbook.Sheets[workbook.SheetNames[0]];
+    let json = XLSX.utils.sheet_to_json(sheet);
+
+    json.forEach(item => {
+      db.collection("products").add(item);
+    });
+
+    alert("Products uploaded!");
+  };
+
+  reader.readAsArrayBuffer(file);
+}
+
+</script>
+
+</body>
+</html>

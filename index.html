@@ -1,46 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QuickDelivery</title>
+  <title>Delivery Miled</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>QuickDelivery</h1>
+  <h1>🍔 Delivery Miled</h1>
 
-<h2>Menu</h2>
-<button onclick="addToCart('Burger')">Burger</button>
-<button onclick="addToCart('Pizza')">Pizza</button>
-<button onclick="addToCart('Sandwich')">Sandwich</button>
+  <div class="container">
+    <h2>Restaurants</h2>
 
-<h2>Cart</h2>
-<ul id="cart"></ul>
+    <div class="card" onclick="addToCart('Burger')">
+      🍔 Burger Place
+    </div>
 
-<button onclick="placeOrder()">Place Order</button>
+    <div class="card" onclick="addToCart('Pizza')">
+      🍕 Pizza Shop
+    </div>
 
-<script>
-let cart = [];
+    <div class="card" onclick="addToCart('Sushi')">
+      🍣 Sushi Bar
+    </div>
+  </div>
 
-function addToCart(item) {
-  cart.push(item);
-  displayCart();
-}
+  <h2>🛒 Cart</h2>
+  <ul id="cart"></ul>
 
-function displayCart() {
-  let list = document.getElementById("cart");
-  list.innerHTML = "";
-  cart.forEach(i => {
-    let li = document.createElement("li");
-    li.textContent = i;
-    list.appendChild(li);
-  });
-}
-
-function placeOrder() {
-  alert("Order sent!");
-  cart = [];
-  displayCart();
-}
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>

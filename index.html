@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickDelivery</title>
+</head>
+<body>
+
+<h1>QuickDelivery</h1>
+
+<h2>Menu</h2>
+<button onclick="addToCart('Burger')">Burger</button>
+<button onclick="addToCart('Pizza')">Pizza</button>
+<button onclick="addToCart('Sandwich')">Sandwich</button>
+
+<h2>Cart</h2>
+<ul id="cart"></ul>
+
+<button onclick="placeOrder()">Place Order</button>
+
+<script>
+let cart = [];
+
+function addToCart(item) {
+  cart.push(item);
+  displayCart();
+}
+
+function displayCart() {
+  let list = document.getElementById("cart");
+  list.innerHTML = "";
+  cart.forEach(i => {
+    let li = document.createElement("li");
+    li.textContent = i;
+    list.appendChild(li);
+  });
+}
+
+function placeOrder() {
+  alert("Order sent!");
+  cart = [];
+  displayCart();
+}
+</script>
+
+</body>
+</html>

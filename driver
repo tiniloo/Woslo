@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+</head>
+
+<body>
+
+<button onclick="start()">Start Driving</button>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "PASTE",
+  authDomain: "PASTE",
+  projectId: "PASTE",
+  databaseURL: "PASTE"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+function start() {
+  navigator.geolocation.watchPosition(pos => {
+    db.ref("driver/location").set({
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude
+    });
+  });
+}
+
+</script>
+
+</body>
+</html>
